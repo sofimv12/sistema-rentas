@@ -147,10 +147,10 @@ li span{color:var(--s);font-size:.9rem}
 <div id="zoom" hidden><img id="zi" alt=""></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
-// ====== PEGA TUS DATOS DE SUPABASE ======
-const SUPABASE_URL = "https://saoisagskkdcmfnxqvmi.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhb2lzYWdza2tkY21mbnhxdm1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQwMjEzMjYsImV4cCI6MjEwOTU5NzMyNn0.opnjF_h9fvXGOox0_wijZ0ws00jcauVpitKcmECBHqo";
-// ========================================
+
+const SUPABASE_URL = "https://hzjdtlfgtxdztyndcgxf.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6amR0bGZndHhkenR5bmRjZ3hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ0MTY2NDIsImV4cCI6MjEwOTk5MjY0Mn0.Zq48H_Rxyio13lb6vznoPlePoUKNE7p32ea4dmKZ_Ss";
+
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const $ = i => document.getElementById(i);
 const esc = t => String(t ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
