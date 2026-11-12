@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HogarRent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--f:#F3F6F8;--t:#10222F;--s:#5A6E7A;--l:#DCE5EA;--a:#0E7C86;--a2:#0A5F67;--y:#FFC857;--r:#B3412F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--f);color:var(--t);line-height:1.5}
+h1,h2,#lcat li b{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;letter-spacing:-.02em}
+header{background:var(--t);color:#fff;padding:22px 20px 0}
+.w{max-width:1040px;margin:0 auto}
+h1{margin:0 0 18px;font-size:1.7rem;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{display:flex;align-items:center;gap:10px}
+nav{display:flex;gap:6px;overflow-x:auto}
+nav button{font:inherit;font-weight:600;background:none;color:#9FB6C2;border:0;padding:11px 18px;cursor:pointer;border-radius:12px 12px 0 0;white-space:nowrap}
+nav button:hover{color:#fff}
+nav button[aria-selected=true]{background:var(--f);color:var(--t)}
+main{padding:28px 20px 70px}
+h2{margin:0 0 14px;font-size:1.35rem}
+.hero{margin:6px 0 26px}
+.hero h2{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.1;margin-bottom:8px}
+.hero p{margin:0;color:var(--s);max-width:52ch}
+form{display:grid;align-items:start;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;background:#fff;border:1px solid var(--l);border-radius:18px;padding:22px;margin-bottom:26px;box-shadow:0 8px 24px -16px rgba(16,34,47,.35)}
+#login{max-width:400px;margin:36px auto;grid-template-columns:1fr}
+label{display:grid;gap:5px;font-size:.82rem;font-weight:600;color:var(--s)}
+input,select{font:inherit;font-size:.95rem;padding:11px 13px;border:1px solid var(--l);border-radius:10px;background:#F9FBFC;color:var(--t);width:100%}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #7FD3DA;outline-offset:2px}
+.b{font:inherit;font-weight:700;cursor:pointer;background:var(--a);color:#fff;border:0;border-radius:10px;padding:11px 20px;align-self:end}
+.b:hover{background:var(--a2)}
+.b:disabled{opacity:.5;cursor:not-allowed}
+.b2{font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;background:none;color:#C5D6DE;border:1px solid #3B5668;border-radius:10px;padding:7px 14px}
+.b2:hover{background:#1B3547}
+#login .b2{color:var(--a);border-color:var(--a);padding:11px}
+#login .b2:hover{background:#E8F4F5}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+li{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--l);border-radius:14px;padding:15px 18px}
+li b{display:block;font-size:1.02rem}
+li span{color:var(--s);font-size:.9rem}
+.x{font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;background:none;color:var(--r);border:1px solid #E6C4BD;border-radius:10px;padding:7px 13px}
+.x:hover{background:#FBEEEB}
+.v{color:var(--s);justify-content:center;border-style:dashed;background:none}
+#msg{display:none;margin-bottom:18px;padding:13px 16px;border-radius:12px;font-size:.93rem}
+#msg.error{display:block;background:#FBEEEB;color:var(--r);border:1px solid #E6C4BD}
+#msg.ok{display:block;background:#E3F4F0;color:#0B5C51;border:1px solid #B7E0D8}
+.buscar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:22px}
+.buscar input{grid-column:span 2}
+@media(max-width:620px){.buscar input{grid-column:auto}}
+#lcat{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
+#lcat li{flex-direction:column;align-items:stretch;justify-content:flex-start;padding:0;overflow:hidden;border-radius:20px;box-shadow:0 10px 28px -18px rgba(16,34,47,.45)}
+#lcat li>div:not(.gal){padding:16px 18px 6px;flex:1}
+#lcat li b{font-size:1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+.chips em{font-style:normal;font-size:.8rem;font-weight:600;background:#E6F2F3;color:var(--a2);border-radius:999px;padding:3px 10px}
+.ct{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--l)}
+.ct a{color:var(--a2);font-weight:600}
+#lcat .acc{display:flex;gap:8px;margin:10px 18px 18px}
+#lcat .acc .b{margin:0;flex:1}
+.alt{background:#fff;color:var(--a2);border:1.5px solid var(--a)}
+.alt:hover{background:#E8F4F5}
+.cq{align-self:auto;padding:9px 14px}
+.cot{width:100%;border-collapse:collapse;margin-top:6px}
+.cot td{padding:8px 4px;border-bottom:1px solid var(--l)}
+.cot td:last-child{text-align:right;font-weight:600}
+.cot .tot td{font-weight:700;color:var(--a2)}
+.nota{margin:8px 0 0;color:var(--s);font-size:.85rem}
+.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+.gal img{flex:0 0 100%;width:100%;height:230px;object-fit:cover;scroll-snap-align:start;cursor:zoom-in}
+.bd{display:inline-block;font-size:.78rem;font-weight:700;border:1.5px solid;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.pgs{margin-top:10px;border-top:1px solid var(--l);padding-top:6px}
+.pg{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:7px 0;border-bottom:1px dashed var(--l);font-size:.9rem}
+.pg:last-child{border-bottom:0}
+.fila{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#zoom{position:fixed;inset:0;background:rgba(0,0,0,.88);display:grid;place-items:center;z-index:9;cursor:zoom-out}
+#zoom img{max-width:94vw;max-height:90vh;border-radius:10px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="w">
+  <h1><span class="logo"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="#FFC857"/></svg>HogarRent</span> <span><button id="ir" class="b2">Iniciar sesión</button> <button id="salir" class="b2" hidden>Cerrar sesión</button></span></h1>
+  <nav id="nav2" hidden>
+    <button data-s="cat" aria-selected="true">Propiedades</button>
+    <button data-s="cot" aria-selected="false">Mis cotizaciones</button>
+    <button data-s="con" aria-selected="false">Mis contratos y pagos</button>
+  </nav>
+</div></header>
+
+<main class="w">
+  <div id="msg" role="status"></div>
+  <form id="login" hidden>
+    <h2 id="lt" style="margin:0">Iniciar sesión</h2>
+    <div id="extra" hidden style="display:grid;gap:10px">
+      <label>Nombre(s) <input id="rn"></label>
+      <label>Apellidos <input id="ra"></label>
+      <label>Teléfono (10 dígitos) <input id="rt" type="tel" inputmode="numeric"></label>
+    </div>
+    <label>Correo <input id="lc" type="email" required></label>
+    <label>Contraseña <input id="lp" type="password" required minlength="6"></label>
+    <button class="b" id="ent">Entrar</button>
+    <button type="button" id="reg" class="b2">Crear cuenta</button>
+    <button type="button" id="vol" class="b2" hidden>Ya tengo cuenta</button>
+  </form>
+  <section id="cat">
+    <div class="hero"><h2>Encuentra tu próximo hogar</h2><p>Casas y departamentos en renta. Cotiza, acepta y firma contrato sin salir de aquí.</p></div>
+    <div class="buscar">
+      <input id="q" type="search" placeholder="Buscar por nombre, colonia o municipio…" aria-label="Buscar propiedades">
+      <select id="ft" aria-label="Tipo de propiedad"><option value="">Todos los tipos</option></select>
+      <select id="fr" aria-label="Recámaras"><option value="">Recámaras</option><option value="1">1 o más</option><option value="2">2 o más</option><option value="3">3 o más</option><option value="4">4 o más</option></select>
+    </div>
+    <form id="cotiza" hidden>
+      <b id="c-t" style="grid-column:1/-1"></b>
+      <label>¿Por cuántos meses quieres rentar? <input id="c-meses" type="number" min="1" max="60" required placeholder="Ej. 12"></label>
+      <button class="b">Solicitar cotización</button>
+      <p class="nota" style="grid-column:1/-1;margin:0">El dueño calculará la renta y verás tu cotización en la pestaña Mis cotizaciones.</p>
+    </form>
+    <form id="interes" hidden>
+      <b id="i-t" style="grid-column:1/-1"></b><input type="hidden" id="i-prop">
+      <label>Nombre <input id="i-nom" required></label>
+      <label>Correo <input id="i-email" type="email" required></label>
+      <label>Teléfono <input id="i-tel" type="tel"></label>
+      <label>Mensaje <input id="i-msg" placeholder="Fechas, dudas…"></label>
+      <button class="b">Enviar</button>
+    </form>
+    <ul id="lcat"></ul>
+  </section>
+  <section id="host" hidden>
+    <div id="s-cot" hidden><h2>Mis cotizaciones</h2><ul id="lcot"></ul></div>
+    <div id="s-con" hidden><h2>Mis contratos y pagos</h2><ul id="lcon"></ul></div>
+  </section>
+</main>
+
+<div id="zoom" hidden><img id="zi" alt=""></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL = "https://hzjdtlfgtxdztyndcgxf.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6amR0bGZndHhkenR5bmRjZ3hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ0MTY2NDIsImV4cCI6MjEwOTk5MjY0Mn0.Zq48H_Rxyio13lb6vznoPlePoUKNE7p32ea4dmKZ_Ss";
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = i => document.getElementById(i);
+const esc = t => String(t ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const aviso = (x, t) => { const m = $("msg"); m.textContent = x; m.className = t; if (t == "ok") setTimeout(() => m.className = "", 2500); };
+const money = n => "$" + Number(n || 0).toLocaleString("es-MX", { minimumFractionDigits:2, maximumFractionDigits:2 });
+const hoy = () => new Date().toLocaleDateString("en-CA");
+const vacio = t => `<li class="v">${t}</li>`;
+const badge = (t, c) => `<span class="bd" style="color:${c};border-color:${c}">${esc(t)}</span>`;
+const C = { cat:[], pag:{} };
+const Q_PROP = "*, propieties_info(*, address_propiety(*))";
+const chips = r => { const i = r.propieties_info || {};
+  return [r.type, r.rent_ref && "Desde " + money(r.rent_ref) + "/mes", i.rooms && i.rooms + " recámaras", i.bathrooms && i.bathrooms + " baños", i.garage && "Cochera para " + i.garage, i.pool && "Alberca", i.furnished && "Amueblada"].filter(Boolean).map(x => `<em>${esc(x)}</em>`).join(""); };
+const dirTxt = r => { const a = r.propieties_info?.address_propiety;
+  return a ? [[a.street,a.house_number].filter(Boolean).join(" "),a.neighborhood,a.municipality,a.state].filter(Boolean).join(", ") : ""; };
+
+class EstadoContrato {
+  color() { return "#5A6E7A"; }
+  mensaje() { return "Contrato"; }
+}
+class EnProceso extends EstadoContrato {
+  color() { return "#B7791F"; }
+  mensaje() { return "Pendiente de firma o inicio"; }
+}
+class Activo extends EstadoContrato {
+  color() { return "#0E7C86"; }
+  mensaje() { return "Vigente: la propiedad está ocupada"; }
+}
+class Terminado extends EstadoContrato {
+  mensaje() { return "Finalizado: la propiedad quedó libre"; }
+}
+class Cancelado extends EstadoContrato {
+  color() { return "#B3412F"; }
+  mensaje() { return "Cancelado: no llegó a iniciar"; }
+}
+const ESTADOS_CLS = { "en proceso":new EnProceso(), activo:new Activo(), terminado:new Terminado(), cancelado:new Cancelado() };
+const estadoDe = s => ESTADOS_CLS[s] || new EstadoContrato();
+
+let verLogin = false, miId = null, miUser = null, tabActual = "cat";
+function tabC(k) {
+  tabActual = k;
+  $("cat").hidden = k != "cat"; $("s-con").hidden = k != "con"; $("s-cot").hidden = k != "cot";
+  document.querySelectorAll("#nav2 button").forEach(x => x.setAttribute("aria-selected", x.dataset.s == k));
+}
+db.auth.onAuthStateChange((_, ses) => {
+  const on = !!ses; miId = ses ? ses.user.id : null; miUser = ses ? ses.user : null;
+  $("host").hidden = !on; $("nav2").hidden = !on;
+  $("login").hidden = on || !verLogin; $("ir").hidden = on; $("salir").hidden = !on;
+  tabC(on ? tabActual : "cat"); catalogo();
+  if (on) { contratos(); misCotizaciones(); }
+});
+$("ir").onclick = () => { verLogin = true; $("login").hidden = false; };
+
+async function catalogo() {
+  const { data, error } = await db.from("propierties_for_rent").select(Q_PROP).eq("activa", true).order("id_propierty", { ascending:false });
+  if (error) return aviso("No se pudo cargar el catálogo: " + error.message, "error");
+  C.cat = data;
+  const tipos = [...new Map(data.filter(r => r.type).map(r => [r.type.trim().toLowerCase(), r.type.trim()])).values()], ft = $("ft"), v = ft.value;
+  ft.innerHTML = '<option value="">Todos los tipos</option>' + tipos.map(x => `<option>${esc(x)}</option>`).join(""); ft.value = v;
+  pintarCat();
+}
+$("q").oninput = $("ft").onchange = $("fr").onchange = () => pintarCat();
+
+function pintarCat() {
+  const q = $("q").value.trim().toLowerCase(), t = $("ft").value.toLowerCase(), rc = Number($("fr").value) || 0;
+  const data = C.cat.filter(r => { const i = r.propieties_info || {};
+    return (!q || [r.name, r.type, dirTxt(r), i.description].join(" ").toLowerCase().includes(q))
+      && (!t || (r.type || "").trim().toLowerCase() == t) && (!rc || (i.rooms || 0) >= rc); });
+  $("lcat").innerHTML = data.length ? data.map(r => { const ocu = r.disponible === false, dis = ocu ? "disabled" : "";
+    const fotos = [r.photo_one, r.photo_two, r.photo_three].filter(Boolean);
+    return `<li>${fotos.length ? `<div class="gal">${fotos.map(u => `<img src="${esc(u)}" alt="">`).join("")}</div>` : ""}<div style="flex:1"><b>${esc(r.name)}</b> ${ocu ? badge("Ocupada", "#B3412F") : ""}<span>${esc(dirTxt(r))}</span><div class="chips">${chips(r)}</div>${r.contact_email ? `<span class="ct">Contacto: ${esc(r.contact_name || "Propietario")}${r.contact_phone ? ` · <a href="tel:${esc(r.contact_phone)}">${esc(r.contact_phone)}</a>` : ""} · <a href="mailto:${esc(r.contact_email)}">${esc(r.contact_email)}</a></span>` : ""}</div><div class="acc"><button class="b" data-i="${r.id_propierty}" ${dis}>Me interesa</button><button class="b alt" data-c="${r.id_propierty}" ${dis}>Cotizar</button></div></li>`; }).join("")
+    : vacio(C.cat.length ? "No hay propiedades que coincidan con tu búsqueda." : "Aún no hay propiedades publicadas.");
+}
+
+$("interes").onsubmit = async e => {
+  e.preventDefault();
+  const tel = $("i-tel").value.replace(/\D/g, "");
+  const { error } = await db.from("property_viewings").insert({
+    id_propierty: Number($("i-prop").value), full_name: $("i-nom").value.trim(), email: $("i-email").value.trim(),
+    phone_number: tel ? Number(tel) : null, message: $("i-msg").value.trim() || null });
+  if (error) return aviso("No se pudo enviar: " + error.message, "error");
+  e.target.reset(); e.target.hidden = true; aviso("¡Listo! Recibimos tu interés y te contactaremos pronto.", "ok");
+};
+$("cotiza").onsubmit = async e => {
+  e.preventDefault();
+  if (!miUser) return aviso("Inicia sesión para solicitar una cotización.", "error");
+  const m = miUser.user_metadata || {};
+  const { error } = await db.from("quotes").insert({ id_propierty:Number($("cotiza").dataset.id), months:Number($("c-meses").value),
+    client_name:[m.first_name, m.last_name].filter(Boolean).join(" ") || null, client_email:miUser.email });
+  if (error) return aviso("No se pudo enviar la solicitud: " + error.message, "error");
+  e.target.reset(); e.target.hidden = true;
+  aviso("Solicitud enviada. Verás tu cotización en Mis cotizaciones.", "ok"); misCotizaciones();
+};
+
+const sx = s => ["cotizada","aceptada","rechazada","contratada"].includes(s) ? s : "solicitada";
+const TXT_EST = { solicitada:"Solicitada: en espera de la cotización del dueño", cotizada:"Cotizada: revisa y responde", aceptada:"Aceptada: el dueño generará el contrato", rechazada:"Rechazada", contratada:"Contrato generado: míralo en Mis contratos y pagos" };
+async function misCotizaciones() {
+  const { data, error } = await db.from("quotes").select("*, propierties_for_rent(name)").order("id", { ascending:false });
+  if (error) return aviso("No se pudieron cargar tus cotizaciones: " + error.message, "error");
+  const mias = data.filter(r => r.user_id === miId);
+  $("lcot").innerHTML = mias.length ? mias.map(r => { const s = sx(r.status);
+    return `<li style="flex-direction:column;align-items:stretch"><div class="fila" style="justify-content:space-between"><div><b>${esc(r.propierties_for_rent?.name || "Propiedad")}</b><span>${r.months} meses · ${TXT_EST[s]}</span></div>${s == "cotizada" ? `<div class="fila"><button class="b cq rsp" data-id="${r.id}" data-a="1">Aceptar</button><button class="x rsp" data-id="${r.id}" data-a="0">Rechazar</button></div>` : ""}</div>${r.detail?.length ? `<table class="cot">${r.detail.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${money(v)}</td></tr>`).join("")}<tr class="tot"><td>Pago inicial (1.er mes + depósito + cargos)</td><td>${money(r.initial_payment)}</td></tr><tr class="tot"><td>Total de rentas (${r.months} meses)</td><td>${money(r.total_rents)}</td></tr></table><p class="nota">Cotización de ${esc(r.property_kind || "la propiedad")}: cálculo estimado, no es un contrato.</p>` : ""}</li>`; }).join("")
+    : vacio("Aún no tienes cotizaciones. Solicítala desde el catálogo con el botón Cotizar.");
+}
+
+const estPago = p => p.status == "pagado" ? "pagado" : (p.due_date && p.due_date < hoy() ? "vencido" : "pendiente");
+const colPago = { pagado:"#0E7C86", pendiente:"#B7791F", vencido:"#B3412F" };
+const pagosHtml = id => (C.pag[id] || []).map(p => { const s = estPago(p);
+  return `<div class="pg"><span>${esc(p.transaction_reference || "Pago")} · vence ${esc(p.due_date)} · <b>${money(p.amount)}</b>${p.payment_date ? " · pagado el " + esc(p.payment_date) : ""}</span>${badge(s, colPago[s])}</div>`; }).join("")
+  || '<p class="nota">Aún no hay pagos generados.</p>';
+const conLi = r => { const e = estadoDe(r.status);
+  return `<li style="flex-direction:column;align-items:stretch"><div class="fila" style="justify-content:space-between"><div><b>${esc(r.propierties_for_rent?.name || "Propiedad")}</b><span>${esc(r.start_date)} a ${esc(r.end_date)} · ${money(r.monthly_rent)}/mes</span><span style="display:block">${esc(e.mensaje())}</span></div>${badge(r.status, e.color())}</div><div class="pgs">${pagosHtml(r.id_agreements)}</div></li>`; };
+
+async function contratos() {
+  const [c, p] = await Promise.all([
+    db.from("rental_agreements").select("*, propierties_for_rent(name)").order("start_date", { ascending:false }),
+    db.from("payments_rentals").select("*").order("due_date", { ascending:true })]);
+  if (c.error) return aviso("No se pudieron cargar los contratos: " + c.error.message, "error");
+  if (p.error) return aviso("No se pudieron cargar los pagos: " + p.error.message, "error");
+  C.pag = {}; p.data.forEach(x => (C.pag[x.id_agreements] ||= []).push(x));
+  $("lcon").innerHTML = c.data.length ? c.data.map(conLi).join("") : vacio("Aún no tienes contratos.");
+}
+
+$("login").onsubmit = async e => {
+  e.preventDefault();
+  const { error } = await db.auth.signInWithPassword({ email:$("lc").value.trim(), password:$("lp").value });
+  if (error) aviso("No se pudo iniciar sesión: " + error.message, "error");
+};
+function modo(r) {
+  $("extra").hidden = !r; $("ent").hidden = r; $("vol").hidden = !r;
+  $("lt").textContent = r ? "Crear cuenta" : "Iniciar sesión";
+  $("reg").textContent = r ? "Crear mi cuenta" : "Crear cuenta";
+}
+$("vol").onclick = () => modo(false);
+$("reg").onclick = async () => {
+  if ($("extra").hidden) return modo(true);
+  const nom = $("rn").value.trim(), ape = $("ra").value.trim(), tel = $("rt").value.replace(/\D/g, "");
+  if (!nom || !ape || tel.length < 10) return aviso("Escribe tu nombre, apellido y un teléfono de 10 dígitos.", "error");
+  if (!$("lc").value.trim() || $("lp").value.length < 6) return aviso("Escribe tu correo y una contraseña de al menos 6 caracteres.", "error");
+  const { data, error } = await db.auth.signUp({ email:$("lc").value.trim(), password:$("lp").value,
+    options:{ data:{ first_name:nom, last_name:ape, phone:tel } } });
+  if (error) return aviso(error.message, "error");
+  modo(false);
+  aviso(data.session ? "Cuenta creada" : "Cuenta creada. Revisa tu correo para confirmarla.", "ok");
+};
+$("salir").onclick = async () => {
+  verLogin = false;
+  try { await db.auth.signOut({ scope:"local" }); } catch (e) {}
+  Object.keys(localStorage).filter(k => k.startsWith("sb-")).forEach(k => localStorage.removeItem(k));
+  location.reload();
+};
+
+document.addEventListener("click", async e => {
+  const t = e.target, d = t.dataset;
+  if (t.matches(".gal img")) { $("zi").src = t.src; $("zoom").hidden = false; return; }
+  if (t.closest("#zoom")) { $("zoom").hidden = true; return; }
+  if (t.classList.contains("rsp")) {                     // el cliente acepta o rechaza
+    const { error } = await db.rpc("responder_cotizacion", { p_quote:d.id, p_acepta:d.a == "1" });
+    if (error) return aviso("No se pudo responder: " + error.message, "error");
+    aviso(d.a == "1" ? "Cotización aceptada. El dueño generará tu contrato." : "Cotización rechazada", "ok"); return misCotizaciones();
+  }
+  if (d.c) {
+    if (!miUser) { verLogin = true; $("login").hidden = false; return aviso("Inicia sesión para solicitar una cotización.", "error"); }
+    const f = $("cotiza"); f.hidden = false; f.dataset.id = d.c;
+    $("c-t").textContent = "Cotizar: " + C.cat.find(r => r.id_propierty == d.c).name;
+    f.scrollIntoView({ behavior:"smooth" }); return;
+  }
+  if (d.i) {
+    $("interes").hidden = false; $("i-prop").value = d.i;
+    $("i-t").textContent = "Me interesa: " + C.cat.find(r => r.id_propierty == d.i).name;
+    $("interes").scrollIntoView({ behavior:"smooth" }); return;
+  }
+  const t2 = t.closest("#nav2 button");
+  if (t2) { tabC(t2.dataset.s); $("msg").className = ""; }
+});
+</script>
+</body>
+</html>
